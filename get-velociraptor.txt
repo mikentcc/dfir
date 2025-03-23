@@ -1,0 +1,38 @@
+
+REM Get velociraptor MSI file from a web server and drop that in a temp area than install and go back to Velociraptor to do forensic work (run KAPE triage)
+REM Stand up temp python web server python3 -m http.server 8080 or install full webserver on a host.
+REM on Velocirator server issue the following command after the server and client configs have been generated.
+REM velociraptor config repack --msi velociraptor-v0.6.8-2-windows-amd64.msi client.config.yaml nameyouwant.msi
+REM This will allow the installed MSI file to communicate with your Velociraptor instance after the service starts.
+REM Triage can now be done from the Velociraptor GUI collect and analyze
+REM All of the above is done on a linux server adjust for windows if needed.
+REM Run with an account that can install software.
+
+GUI r
+DELAY 1000
+STRING powershell.exe
+ENTER
+DELAY 3000
+STRING Start-Process powershell -Verb runAs ; exit
+ENTER
+DELAY 5000
+LEFT
+ENTER
+STRING cd $env:temp
+ENTER
+DELAY 4000
+STRING Invoke-WebRequest -Uri https://velo.ntcc.biz:8443/vr/repackedvelociraptor.msi -OutFile velociraptor.msi ; Start-Process .\velociraptor.msi -ArgumentList "/quiet"
+ENTER
+DELAY 3000
+REM Added to allow for client config to be in a non-repacked EXE or MSI file
+REM This way a client config can be updated and the service restarted easier.
+REM (only needed in older versions) STRING Invoke-WebRequest -Uri http://192.168.200.161:8080/client.config.yaml -OutFile Velociraptor.config.yaml
+REM ENTER
+REM DELAY 1000
+REM STRING Stop-Service -Name velociraptor
+REM ENTER
+REM DELAY 3000
+REM STRING xcopy /Y Velociraptor.config.yaml "c:\program files\velociraptor\"
+REM ENTER
+STRING Write-Host "Check Velociratpr for this instance in a few minutes."
+ENTER
