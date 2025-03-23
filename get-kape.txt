@@ -14,13 +14,13 @@ ENTER
 STRING cd dfir
 ENTER
 DELAY 3000
-STRING Invoke-WebRequest -Uri http://192.168.121.135/dfir/kape.zip -OutFile .\kape.zip
+STRING Invoke-WebRequest -Uri http://192.168.1.135/dfir/kape.zip -OutFile .\kape.zip
 ENTER
 DELAY 4000
 STRING Expand-Archive -Path .\kape.zip
 ENTER
 DELAY 4000
-STRING C:\dfir\KAPE\kape\kape.exe --tsource C: --tdest C:\forensic --tflush --target !SANS_Triage --scs 192.168.121.135 --scp 22 --scu dfir --scpw password --scd location --zip DFIR
+STRING C:\dfir\KAPE\kape\kape.exe --tsource C: --tdest C:\forensic --tflush --target !SANS_Triage --scs 192.168.1.135 --scp 22 --scu dfir --scpw password --scd location --zip DFIR
 ENTER
 DELAY 1000
 STRING Write-Host "Forensic SANS_Triage Capture Completed" -ForegroundColor Green
