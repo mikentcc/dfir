@@ -21,12 +21,12 @@ ENTER
 STRING cd $env:temp
 ENTER
 DELAY 4000
-STRING Invoke-WebRequest -Uri https://velo.ntcc.biz:8443/vr/repackedvelociraptor.msi -OutFile velociraptor.msi ; Start-Process .\velociraptor.msi -ArgumentList "/quiet"
+STRING Invoke-WebRequest -Uri https://velo.domain.com:8443/vr/repackedvelociraptor.msi -OutFile velociraptor.msi ; Start-Process .\velociraptor.msi -ArgumentList "/quiet"
 ENTER
 DELAY 3000
 REM Added to allow for client config to be in a non-repacked EXE or MSI file
 REM This way a client config can be updated and the service restarted easier.
-REM (only needed in older versions) STRING Invoke-WebRequest -Uri http://192.168.200.161:8080/client.config.yaml -OutFile Velociraptor.config.yaml
+REM (only needed in older versions) STRING Invoke-WebRequest -Uri http://192.168.2.161:8080/client.config.yaml -OutFile Velociraptor.config.yaml
 REM ENTER
 REM DELAY 1000
 REM STRING Stop-Service -Name velociraptor
