@@ -2,7 +2,7 @@
 # I wanted to try to help with IR investigations with automating some of it trying to use a flipper zero
 
 # Both of these payloads are for the BadUSB/BadKB module on the flipper
-# Both of thses payloads do require you setup a pre-deployed server on your own
+# Both of these payloads do require you setup a pre-deployed server on your own
 
 - get-velociraptor will require you setup your own Velociraptor instance and create your agent for that instance.
 
